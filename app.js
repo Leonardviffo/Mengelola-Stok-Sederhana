@@ -27,16 +27,21 @@ const btnTambah = document.getElementById("btnTambah");
 
 function renderInventory() {
   inventoryList.innerHTML = inventory
-    .map(
-      ({ id, nama, stok }) =>
-        `<li> 
-            <p>${nama} - <span class="${stok <= 0 ? "stok-habis" : ""}"> Sisa Stok : ${stok <= 0 ? `Habis` : stok}</span></p>
-            <div class="bungkus">
-            <button data-id="${id}" class="btn-Ubah" >Ubah Stok</button>
-            <button data-id="${id}" class="btn-Hapus" >Hapus</button>
-            </div>
-        </li>`,
-    )
+    .map(({ id, nama, stok }) => {
+      return `
+        <tr>
+          <td>${nama}</td>
+          <td>${stok}</td>
+          <td class="${stok <= 0 ? "status-habis" : "status-aman"}">
+            ${stok <= 0 ? "Habis" : "Aman"}
+          </td>
+          <td>
+            <button data-id="${id}" class="btn-Ubah">Ubah</button>
+            <button data-id="${id}" class="btn-Hapus">Hapus</button>
+          </td>
+        </tr>
+      `;
+    })
     .join("");
 }
 
@@ -85,4 +90,5 @@ btnTambah.addEventListener("click", function (e) {
 });
 
 renderInventory();
+
 
