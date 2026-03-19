@@ -8,16 +8,33 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <h1>Inventory Management Store</h1>
+    <header>
+      <h1>Inventory Management Store</h1>
+    </header>
 
-    <form class="form-barang">
-      <input type="text" id="namaBarang" placeholder="Nama barang" required />
-      <input type="number" id="jumlahBarang" placeholder="Jumlah" required />
-      <button id="btnTambah">Tambah</button>
-    </form>
+    <section class="form-barang-group">
+      <form class="form-barang">
+        <input type="text" id="namaBarang" placeholder="Nama barang" required />
+        <input type="number" id="jumlahBarang" placeholder="Jumlah" required />
+        <button id="btnTambah">Tambah</button>
+      </form>
+    </section>
 
-    <ul class="inventory-list"></ul>
+    <div class="container-list">
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th>Nama Barang</th>
+            <th>Stok</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody class="inventory-list"></tbody>
+      </table>
+    </div>
 
     <script src="app.js"></script>
   </body>
 </html>
+
