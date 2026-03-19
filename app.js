@@ -1,4 +1,4 @@
-let inventory = [
+let inventory = JSON.parse(localStorage.getItem("inventory")) || [
   {
     id: 1,
     nama: "Laptop",
@@ -15,6 +15,10 @@ let inventory = [
     stok: 0,
   },
 ];
+
+function saveToLocalStorage() {
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+}
 
 const inventoryList = document.querySelector(".inventory-list");
 const namaBarang = document.getElementById("namaBarang");
@@ -40,6 +44,7 @@ inventoryList.addEventListener("click", (e) => {
   if (e.target.dataset.id && e.target.classList.contains("btn-Hapus")) {
     const id = Number(e.target.dataset.id);
     inventory = inventory.filter((item) => item.id !== id);
+    saveToLocalStorage();
     renderInventory();
   } else if (e.target.classList.contains("btn-Ubah")) {
     const id = Number(e.target.dataset.id);
@@ -53,7 +58,7 @@ inventoryList.addEventListener("click", (e) => {
     } else {
       editbarang.stok = Number(stokBaru);
     }
-
+    saveToLocalStorage();
     renderInventory();
   }
 });
@@ -75,8 +80,9 @@ btnTambah.addEventListener("click", function (e) {
 
   namaBarang.value = "";
   jumlahBarang.value = "";
-
+  saveToLocalStorage();
   renderInventory();
 });
 
 renderInventory();
+
